@@ -2,13 +2,18 @@
 <html>
 <head>
 <title>List</title>
+<link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-
-<h1>My List: <%= listName %></h1>
-<ul id=#items-wrapper>
-<%- itemsHTML %>      
-</ul>
+<div class="headerbar">
+<img src="/static/images/logo.svg" />
+</div>
+<div class="content">
+    <h1>My List: <%= listName %></h1>
+    <ul id=#items-wrapper>
+    <%- itemsHTML %>      
+    </ul>
+</div>
 
 </body>
 </html>

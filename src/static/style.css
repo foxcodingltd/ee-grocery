@@ -9,6 +9,10 @@
     padding: 0;
 }
 
+h1 {
+    margin-top: 1rem;
+}
+
 .headerbar {
     width: 100%;
     padding: 1rem;
@@ -28,3 +32,31 @@
 input, button {
     padding: 0.5rem;
 }
+
+ul {
+    list-style: none;
+}
+
+li {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.button__small {
+    line-height: 1;
+    font-size: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+}
+
+.button__small:hover {
+    color: var(--lightThemeFontColor);
+    background-color: var(--primaryColor);
+}
+

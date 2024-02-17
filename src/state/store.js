@@ -1,13 +1,16 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export const store = {
     lists: [],
 };
 
 export function addList(listState) {
-    if (store.lists.find((list) => list.id === listState.id)) {
-        throw new Error(`Failed to add list, duplicated id detected ${listState.id}`);
+    const id = listState.id || uuidv4();
+    if (store.lists.find((list) => list.id === id)) {
+        throw new Error(`Failed to add list, duplicated id detected ${id}`);
     }
     const newItem = {
-        id: listState.id,
+        id,
         name: listState.name || 'List',
         items: listState.items || [],
     };
@@ -38,3 +41,4 @@ export function removeListItem(listId, itemId) {
     }
     list.items = list.items.filter((item) => item.id !== itemId);
 }
+
