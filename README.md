@@ -13,3 +13,5 @@ I got the index page working which allows you to create and remove lists.
 I ran out of time to add the lists themselves, though the structure would be very similar to
 the list index page. The only real difference is the additional strikethrough functionality that would
 be required, and the necessity of passing the listId around in addition to the item data.
+
+### Instructions Version: 5b8d0fd276b6d288905ed2f63a934e057e8feca2
