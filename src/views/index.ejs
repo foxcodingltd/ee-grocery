@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Lists</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="headerbar">
+<img src="/static/images/logo.svg" />
+</div>
+<div class="content">
+    <form method="post" action="/lists/create">
+        <input type="text" id="list-name" name="list-name" />
+        <button>Create List</button>
+    </form>
+    <h1>My Lists</h1>
+    <ul id=#list-wrapper>
+    <%- listsHTML %>      
+    </ul>
+</div>
+
+
+</body>
+</html>

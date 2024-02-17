@@ -1,0 +1,30 @@
+:root {
+    --lightThemeFontColor: #fff;
+    --primaryColor: #0693e3; 
+    font-family: Montserrat, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.headerbar {
+    width: 100%;
+    padding: 1rem;
+    color: var(--lightThemeFontColor);
+    background-color: var(--primaryColor);
+}
+
+.headerbar img {
+    height: 3rem;
+}
+
+.content {
+    max-width: 1000px;
+    margin: 4rem auto 0 auto;
+}
+
+input, button {
+    padding: 0.5rem;
+}
