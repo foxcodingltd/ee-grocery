@@ -1,6 +1,8 @@
 import express from 'express';
 import ejs from 'ejs';
-import { store, addList, removeList } from '../state/store.js';
+import { createStore, addList, removeList } from '../state/store.js';
+
+const store =  createStore();
 
 export const router = express.Router();
 
@@ -31,7 +33,7 @@ export function buildListItem(itemState) {
 }
 
 export async function buildIndex(state) {
-    const entries = state.lists.map(buildListLink).join('\n');
+    const entries = Object.values(state.lists).map(buildListLink).join('\n');
     const page = await ejs.renderFile('./src/views/index.ejs', {
         listsHTML: entries,
     });
@@ -39,7 +41,7 @@ export async function buildIndex(state) {
 }
 
 export async function buildList(state, id) {
-    const list = state.lists.find((list) => list.id === id);
+    const list = state.lists[id];
     if (!list) {
         console.log('Invalid list id');
         return 'List not found';
@@ -62,14 +64,14 @@ function createListHandler(req, res) {
     const name = req.body['list-name'];
     addList({
         name,
-    });
+    }, store);
     res.redirect(301, '/');
 }
 
 function removeListHandler(req, res) {
     const id = req.params.id;
     console.log("Params", req.params);
-    removeList(id);
+    removeList(id, store);
     res.redirect(301, '/');
 }
 

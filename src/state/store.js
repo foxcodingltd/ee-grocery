@@ -1,12 +1,14 @@
 import { v4 as uuidv4 } from 'uuid';
 
-export const store = {
-    lists: [],
-};
+export function createStore() {
+    return {
+        lists: {},
+    }
+}
 
-export function addList(listState) {
+export function addList(listState, store) {
     const id = listState.id || uuidv4();
-    if (store.lists.find((list) => list.id === id)) {
+    if (store.lists[id]) {
         throw new Error(`Failed to add list, duplicated id detected ${id}`);
     }
     const newItem = {
@@ -14,16 +16,18 @@ export function addList(listState) {
         name: listState.name || 'List',
         items: listState.items || [],
     };
-    store.lists.push(newItem);
+    store.lists[id] = newItem;
     return newItem;
 }
 
-export function removeList(listId) {
-    store.lists = store.lists.filter((list) => list.id !== listId);
+export function removeList(listId, store) {
+    if (store.lists[listId]) {
+        delete store.lists[listId];
+    }
 }
 
-export function addListItem(listId, item) {
-    const list = store.lists.find((list) => list.id === listId); 
+export function addListItem(listId, item, store) {
+    const list = store.lists[listId]; 
     if (!list) {
         throw new Error(`Failed to add item to list with id ${listId}`);
     }
@@ -34,8 +38,8 @@ export function addListItem(listId, item) {
     });
 }
 
-export function removeListItem(listId, itemId) {
-    const list = store.lists.find((list) => list.id === listId); 
+export function removeListItem(listId, itemId, store) {
+    const list = store.lists[listId]; 
     if (!list) {
         return;
     }
